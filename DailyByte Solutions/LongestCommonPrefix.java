@@ -3,7 +3,11 @@ package practiceDailyByte;
 public class LongestCommonPrefix {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		String[] strArray = new String[] {"colorado", "color", "cold"};
+		
+		for(int i =0; i<strArray[0].length() ; i++) {
+			
+		}
 
 	}
 

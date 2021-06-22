@@ -3,8 +3,12 @@ package practiceDailyByte;
 public class ValidPalindromeWRemoval {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		String str = "foobof";
+		
+		for(int i= 0 ; i<str.length(); i++) {
+			
+		}
 	}
 
 }
