@@ -11,6 +11,7 @@ class BinarySearchTree {
     this.root = null;
     this.height = 0;
   }
+
   insert(value){
     const newNode = new Node(value);
     if(this.root === null){
@@ -140,6 +141,69 @@ class BinarySearchTree {
       }
     }
   }
+  
+  breadthFirstSearch(){
+    //level order Traversal
+    let currentNode = this.root;
+    let list = [];
+    let queue = [];
+    queue.push(currentNode);
+    while (queue.length > 0){
+      currentNode = queue.shift();
+      list.push(currentNode.value)
+      if(currentNode.left){
+        queue.push(currentNode.left)
+      }
+      if(currentNode.right){
+        queue.push(currentNode.right)
+      }
+    }
+    return list;
+  }
+
+  breadthFirstSearchRecursive(queue,list){
+    if(queue.length === 0) {
+      return list;
+    }
+    let currentNode = queue.shift();
+    list.push(currentNode.value)
+    if(currentNode.left){
+        queue.push(currentNode.left)
+      }
+      if(currentNode.right){
+        queue.push(currentNode.right)
+      }
+    return this.breadthFirstSearchRecursive(queue,list);
+  }
+
+  printPreorder(node) {
+      //ROOT, LEFT, RIGHT
+        if (node != null){
+          console.log(node.value + " ");
+          this.printPreorder(node.left);
+          this.printPreorder(node.right);
+          }
+        
+    }
+
+printInorder(node) {
+        //LEFT, ROOT, RIGHT
+        if (node != null){
+          this.printInorder(node.left);
+          console.log(node.value + " ");
+          this.printInorder(node.right);
+        }
+    }
+
+printPostorder(node) {
+        //LEFT, RIGHT, ROOT
+        if (node != null){
+          this.printPostorder(node.left);
+          this.printPostorder(node.right);
+          console.log(node.value + " ");
+        }
+    }
+
 }
 
 const tree = new BinarySearchTree();
@@ -150,17 +214,28 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(15)
 tree.insert(1)
+// tree.breadthFirstSearch();
+// tree.breadthFirstSearchRecursive([tree.root],[])
 // tree.lookup(1)
-tree.remove(20);
-JSON.stringify(traverse(tree.root))
-
+// tree.remove(20);
+// console.log(JSON.stringify(traverseNode(tree.root)));
+console.log('----------------------');
+tree.printPreorder(tree.root);
+console.log('----------------------');
+tree.printInorder(tree.root);
+console.log('----------------------');
+tree.printPostorder(tree.root);
 //     9
 //  4     20
 //1  6  15  170
 
-function traverse(node) {
+function traverseNode(node) {
   const tree = { value: node.value };
-  tree.left = node.left === null ? null : traverse(node.left);
-  tree.right = node.right === null ? null : traverse(node.right);
+  tree.left = node.left === null ? null : traverseNode(node.left);
+  tree.right = node.right === null ? null : traverseNode(node.right);
   return tree;
 }
+
+
+    
+    
